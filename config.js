@@ -3,35 +3,32 @@ import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 
 global.owner = [
-  ['5492644138998', '𝚆𝙸𝙻𝙺𝙴𝚁', true],
-  ['584125877491'],
-  ['156981591593126'],
-  ['595972314588']
+  ['165043362652249', '𝙹𝚄𝙰𝙽 𝙾𝙵𝙲', true]
 ]
 
 global.mods = []
 global.prems = []
 
-global.namebot = '𝙶𝙾𝙷𝙰𝙽 𝙱𝙴𝙰𝚂𝚃 🌀'
-global.packname = '𝙶𝙾𝙷𝙰𝙽-𝙱𝙴𝙰𝚂𝚃 🐉'
-global.author = '𝚆𝙸𝙻𝙺𝙴𝚁 | © 𝟸𝟶𝟸𝟼 '
-global.moneda = '𝙶𝙾𝙷𝙰𝙽 𝙱𝙴𝙰𝚂𝚃'
+global.namebot = '🪡 𝐄𝐑𝐄𝐍 𝐁𝐎𝐓 🪡'
+global.packname = '🪡 𝐄𝐑𝐄𝐍 𝐁𝐎𝐓 🪡'
+global.author = '𝙹𝚄𝙰𝙽 𝙾𝙵𝙲 | © 𝟸𝟶𝟸𝟼 '
+global.moneda = '🪡 𝐄𝐑𝐄𝐍 𝐁𝐎𝐓 🪡'
 
 global.libreria = 'Baileys'
 global.baileys = 'V 6.7.16'
 global.vs = '2.2.0'
 global.sessions = 'sessions'
-global.jadi = 'subsaiyan'
+global.jadi = 'erenjadi'
 global.yukiJadibts = true
 
-global.namecanal = '❇️'
-global.idcanal = '120363403739366547@newsletter'
-global.idcanal2 = '120363403739366547@newsletter'
-global.canal = 'https://whatsapp.com/channel/0029Vb5pM031CYoMvQi2I02D'
-global.canalreg = '120363402895449162@newsletter'
+global.namecanal = '🪡'
+global.idcanal = '120363419404216418@newsletter'
+global.idcanal2 = '120363419404216418@newsletter'
+global.canal = 'https://whatsapp.com/channel/0029VbARAwbEgGfOsCN1T10V'
+global.canalreg = '120363419404216418@newsletter'
 
 global.ch = {
-  ch1: '120363420941524030@newsletter'
+  ch1: '120363419404216418@newsletter'
 }
 
 global.multiplier = 69
@@ -53,6 +50,6 @@ global.APIs = {
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
   unwatchFile(file)
-  console.log(chalk.redBright("🐉 Se actualizó 'config.js'"))
+  console.log(chalk.redBright("🪡 Se actualizó 'config.js'"))
   import(`file://${file}?update=${Date.now()}`)
 })
