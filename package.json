@@ -1,7 +1,7 @@
 {
-  "name": "EREN BOT",
+  "name": "Eren Bot",
   "version": "1.0.0",
-  "description": "Eren dominio",
+  "description": "Hecho por juan",
   "main": "index.js",
   "type": "module",
   "directories": {
@@ -14,29 +14,36 @@
   },
   "homepage": "https://github.com/juan20092/EREN-BOT",
   "author": {
-    "name": "JUAN-OFC"
+    "name": "JUAN"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/juan20092/EREN-BOT.git"
+    "url": "git+https://github.com/juan20092/EREN-BOT"
   },
   "bugs": {
     "url": "https://github.com/juan20092/EREN-BOT/issues"
   },
-  "license": "MIT-LICENSE",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@bochilteam/scraper": "^4.2.4",
     "@hapi/boom": "^10.0.1",
     "@StarlightsTeam/Scraper": "github:Ado926/Starlights-Scraper",
     "@whiskeysockets/baileys": "github:juan20092/baylesXR",
+    "api-dylux": "^1.8.5",
     "aptoide-scraper": "github:DIEGO-OFC/dv-aptoide-scraper",
     "ruhend-scraper": "*",
+    "jimp": "^0.22.2",
+    "@soymaycol/yt-dlp": "^1.0.1",
+    "boxen": "^7.1.1",
     "awesome-phonenumber": "^3.4.0",
+    "google-libphonenumber": "3.2.38",
     "axios": "^1.1.2",
+    "chess.js": "*",
     "adonix-scraper": "1.2.5",
     "acrcloud": "^1.4.0",
-    "cfonts": "^3.3.0",
+    "cfonts": "^3.1.1",
     "chalk": "^5.1.0",
+    "crypto-js": "*",
     "cheerio": "npm:cheerio@1.0.0-rc.12",
     "colors": "1.4.0",
     "express": "^4.18.1",
@@ -50,7 +57,6 @@
     "google-it": "^1.6.4",
     "human-readable": "^0.2.1",
     "jsdom": "^20.0.1",
-    "jimp": "^0.16.1",
     "link-preview-js": "^3.0.0",
     "lodash": "^4.17.21",
     "lowdb": "^3.0.0",
@@ -81,7 +87,7 @@
     "ws": "^8.17.1",
     "yargs": "^17.6.0",
     "yt-search": "^2.10.3",
-    "lurcloud": "github:AzamiJs/lurcloud"
+    "fluent-ffmpeg": "*"
   },
   "optionalDependencies": {
     "moment-timezone": "^0.5.45"
