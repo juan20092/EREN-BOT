@@ -205,7 +205,7 @@ async function reconnectSubBot(botPath) {
     const { state: subBotState, saveCreds: saveSubBotCreds } = await useMultiFileAuthState(botPath);
 
     if (!subBotState.creds.registered) {
-      console.warn(chalk.yellow(`⚠️ [EREN 🪡] Poder secundario en ${path.basename(botPath)} no está registrado`));
+      console.warn(chalk.yellow(`⚠️ [EREN] Poder secundario en ${path.basename(botPath)} no está registrado`));
       return;
     }
 
