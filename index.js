@@ -37,16 +37,16 @@ const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
 let { say } = cfonts
-console.log(chalk.magentaBright('\nIniciando MaycolPlus...'))
-say('BASE', {
+console.log(chalk.magentaBright('\nIniciando Eren plus...'))
+say('EREN BOT', {
 font: 'block',
 align: 'center',
-gradient: ['grey', 'white']
+gradient: ['red', 'yellow']
 })
 say('Hecho por JUAN', {
 font: 'console',
 align: 'center',
-colors: ['cyan', 'magenta', 'yellow']
+colors: ['blue', 'magenta', 'yellow']
 })
 protoType()
 serialize()
