@@ -1,4 +1,3 @@
-// 🐉⚡ GOHAN BEAST MODE - MAIN BOT ⚡🐉
 import fs from 'fs'
 import path, { join } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
@@ -80,9 +79,9 @@ const __dirname = global.__dirname(import.meta.url);
 
 // Banner de Gohan Bestia al iniciar main.js
 console.log(chalk.bold.cyan('\n' + '═'.repeat(60)));
-console.log(chalk.bold.yellow('   🐉⚡ GOHAN BESTIA - PODER MÁXIMO ACTIVADO ⚡🐉'));
+console.log(chalk.bold.yellow('   🍫 DULCINEA - PODER ACTIVADO 🍫'));
 console.log(chalk.bold.cyan('═'.repeat(60)));
-console.log(chalk.magenta('   「¡Este es mi poder definitivo! No me detendré hasta proteger a todos」'));
+console.log(chalk.magenta('   「¡Este es mi poder definitivo!」'));
 console.log(chalk.bold.cyan('═'.repeat(60) + '\n'));
 
 // Parsing de argumentos
@@ -129,17 +128,17 @@ global.loadDatabase = async function loadDatabase() {
   };
   global.db.chain = lodash.chain(global.db.data);
 
-  // --- OPTIMIZACIÓN DE ESCRITURA ---
+
   const originalSet = global.db.chain.set.bind(global.db.chain);
   global.db.chain.set = (...args) => {
     const result = originalSet(...args);
     global.markDatabaseModified();
     return result;
   };
-  // --- FIN OPTIMIZACIÓN ---
+  
 };
 
-// Configuración de autenticación
+
 global.authFile = `sessions`;
 const { state, saveCreds } = await useMultiFileAuthState(global.authFile);
 
@@ -201,12 +200,12 @@ try {
  * @param {string} botPath - Ruta de la sesión del sub-bot
  */
 async function reconnectSubBot(botPath) {
-  console.log(chalk.yellow(`🌀 [GOHAN BESTIA] Despertando poder secundario en: ${path.basename(botPath)}`));
+  console.log(chalk.yellow(`🍫 Despertando poder del lider en: ${path.basename(botPath)}`));
   try {
     const { state: subBotState, saveCreds: saveSubBotCreds } = await useMultiFileAuthState(botPath);
 
     if (!subBotState.creds.registered) {
-      console.warn(chalk.yellow(`⚠️ [GOHAN BESTIA] Poder secundario en ${path.basename(botPath)} no está registrado`));
+      console.warn(chalk.yellow(`⚠️ [DULCE 🍫] Poder secundario en ${path.basename(botPath)} no está registrado`));
       return;
     }
 
@@ -235,22 +234,22 @@ async function reconnectSubBot(botPath) {
     subBotConn.ev.on('connection.update', (update) => {
       const { connection, lastDisconnect } = update;
       if (connection === 'open') {
-        console.log(chalk.green(`✨ [GOHAN BESTIA] Poder secundario despertado: ${path.basename(botPath)}`));
+        console.log(chalk.green(`🍫 [DULCE] Poder secundario despertado: ${path.basename(botPath)}`));
         const yaExiste = global.conns.some(c => c.user?.jid === subBotConn.user?.jid);
         if (!yaExiste) {
           global.conns.push(subBotConn);
-          console.log(chalk.green(`⚡ [GOHAN BESTIA] Poder fusionado: ${subBotConn.user?.jid}`));
+          console.log(chalk.green(`🍫 [DULCE] Poder fusionado: ${subBotConn.user?.jid}`));
         }
       } else if (connection === 'close') {
         const reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
-        console.error(chalk.red(`💥 [GOHAN BESTIA] Poder secundario disminuido en ${path.basename(botPath)}. Razón: ${reason}`));
+        console.error(chalk.red(`🍫 [DULCE] Poder secundario disminuido en ${path.basename(botPath)}. Razón: ${reason}`));
 
         if (reason === DisconnectReason.loggedOut || reason === 401) {
-          console.log(chalk.red(`❌ [GOHAN BESTIA] Desconexión permanente. Eliminando poder secundario en ${path.basename(botPath)}.`));
+          console.log(chalk.red(`📛 [DULCE] Desconexión permanente. Eliminando poder secundario en ${path.basename(botPath)}.`));
           global.conns = global.conns.filter(conn => conn.user?.jid !== subBotConn.user?.jid);
           try {
             rmSync(botPath, { recursive: true, force: true });
-            console.log(chalk.green(`✅ [GOHAN BESTIA] Poder secundario eliminado: ${botPath}`));
+            console.log(chalk.green(`✅ [DULCE] Poder secundario eliminado: ${botPath}`));
           } catch (e) {
             console.error(chalk.red(`❌ [ERROR] No se pudo eliminar poder secundario ${botPath}: ${e}`));
           }
@@ -261,7 +260,7 @@ async function reconnectSubBot(botPath) {
     subBotConn.ev.on('creds.update', saveSubBotCreds);
     subBotConn.handler = handler.bind(subBotConn);
     subBotConn.ev.on('messages.upsert', subBotConn.handler);
-    console.log(chalk.blue(`🌀 [GOHAN BESTIA] Manejador asignado a poder secundario: ${path.basename(botPath)}`));
+    console.log(chalk.blue(`🍫 [DULCE] Manejador asignado a poder secundario: ${path.basename(botPath)}`));
 
     if (!global.subBots) {
       global.subBots = {};
@@ -269,7 +268,7 @@ async function reconnectSubBot(botPath) {
     global.subBots[path.basename(botPath)] = subBotConn;
 
   } catch (e) {
-    console.error(chalk.red(`💥 [ERROR GOHAN BESTIA] Error al despertar poder secundario en ${path.basename(botPath)}:`), e);
+    console.error(chalk.red(`🍫 [ERROR DULCE] Error al despertar poder secundario en ${path.basename(botPath)}:`), e);
   }
 }
 
@@ -289,23 +288,23 @@ async function startSubBots() {
   const readRutaJadiBot = readdirSync(rutaJadiBot);
   if (readRutaJadiBot.length > 0) {
     const credsFile = 'creds.json';
-    console.log(chalk.magenta(`🌀 [GOHAN BESTIA] Buscando poders secundarios... Total: ${readRutaJadiBot.length}`));
+    console.log(chalk.magenta(`🍫 [DULCE] Buscando poders secundarios... Total: ${readRutaJadiBot.length}`));
     
     for (const subBotDir of readRutaJadiBot) {
       const botPath = join(rutaJadiBot, subBotDir);
       if (statSync(botPath).isDirectory()) {
         const readBotPath = readdirSync(botPath);
         if (readBotPath.includes(credsFile)) {
-          console.log(chalk.magenta(`⚡ [GOHAN BESTIA] Poder detectado en ${subBotDir}. Despertando...`));
+          console.log(chalk.magenta(`🍫 [DULCE] Poder detectado en ${subBotDir}. Despertando...`));
           await reconnectSubBot(botPath);
         } else {
-          console.log(chalk.yellow(`⚠️ [GOHAN BESTIA] Poder latente en ${subBotDir} (sin creds.json)`));
+          console.log(chalk.yellow(`⚠️ [DULCE] Poder latente en ${subBotDir} (sin creds.json)`));
         }
       }
     }
-    console.log(chalk.magenta(`✅ [GOHAN BESTIA] Proceso de despertar de poderes completado.`));
+    console.log(chalk.magenta(`✅ [DULCE] Proceso de despertar de poderes completado.`));
   } else {
-    console.log(chalk.gray(`🌙 [GOHAN BESTIA] No hay poders secundarios para despertar.`));
+    console.log(chalk.gray(`🍫 [DULCE] No hay poders secundarios para despertar.`));
   }
 }
 
@@ -317,14 +316,14 @@ await startSubBots();
  */
 async function handleLogin() {
   if (conn.authState.creds.registered) {
-    console.log(chalk.green('✅ [GOHAN BESTIA] Poder principal ya registrado.'));
+    console.log(chalk.green('✅ [DULCE] Poder principal ya registrado.'));
     return;
   }
 
   let loginMethod = await question(
     chalk.green(`\n` +
     `╔════════════════════════════════════╗\n` +
-    `║     🐉 GOHAN BESTIA MODE 🐉       ║\n` +
+    `║     🍫 DULCE MODE 🍫       ║\n` +
     `╠════════════════════════════════════╣\n` +
     `║ ¿Cómo deseas activar el poder?     ║\n` +
     `║                                    ║\n` +
@@ -355,7 +354,7 @@ async function handleLogin() {
     if (typeof conn.requestPairingCode === 'function') {
       try {
         if (conn.ws.readyState === ws.OPEN) {
-          console.log(chalk.yellow('🌀 Generando código de emparejamiento...'));
+          console.log(chalk.yellow('🍫 Generando código de emparejamiento...'));
           let code = await conn.requestPairingCode(phoneNumber);
           code = code?.match(/.{1,4}/g)?.join('-') || code;
           console.log(chalk.bold.green('\n════════════════════════════════════'));
@@ -396,7 +395,7 @@ if (!opts['test']) {
       if (global.db.data && global.isDatabaseModified) {
         await global.db.write();
         global.isDatabaseModified = false;
-        console.log(chalk.gray('💾 [GOHAN BESTIA] Base de datos guardada'));
+        console.log(chalk.gray('💾 [DULCE] Base de datos guardada'));
       }
       if (opts['autocleartmp']) {
         const tmp = [tmpdir(), 'tmp', 'serbot'];
@@ -426,17 +425,17 @@ function clearTmp() {
 setInterval(() => {
   if (global.stopped === 'close' || !conn || !conn.user) return;
   clearTmp();
-  console.log(chalk.gray('🧹 [GOHAN BESTIA] Limpieza temporal completada'));
+  console.log(chalk.gray('🧹 [DULCE] Limpieza temporal completada'));
 }, 180000);
 
 // Recolección de basura si está disponible
 if (typeof global.gc === 'function') {
   setInterval(() => {
-    console.log(chalk.gray(`🧠 [GOHAN BESTIA] Optimizando poder...`));
+    console.log(chalk.gray(`🧠 [DULCE] Optimizando poder...`));
     global.gc();
   }, 180000);
 } else {
-  console.log(chalk.yellow(`⚠️ [GOHAN BESTIA] Para optimizar memoria, ejecuta con --expose-gc`));
+  console.log(chalk.yellow(`⚠️ [DULCE] Para optimizar memoria, ejecuta con --expose-gc`));
 }
 
 /**
@@ -448,7 +447,7 @@ async function connectionUpdate(update) {
   
   if (isNewLogin) {
     conn.isInit = true;
-    console.log(chalk.green('✅ [GOHAN BESTIA] Nuevo login detectado'));
+    console.log(chalk.green('✅ [DULCE] Nuevo login detectado'));
   }
   
   const code =
@@ -464,7 +463,7 @@ async function connectionUpdate(update) {
   
   if (connection === 'open') {
     console.log(chalk.bold.green('\n════════════════════════════════════'));
-    console.log(chalk.bold.yellow('   🐉 GOHAN BESTIA HA DESPERTADO 🐉'));
+    console.log(chalk.bold.yellow('   🍫 DULCE HA DESPERTADO 🍫'));
     console.log(chalk.bold.cyan(`   👤 Usuario: ${conn.user?.name || 'Gohan'}`));
     console.log(chalk.bold.cyan(`   📱 Número: ${conn.user?.id?.split(':')[0] || 'Desconocido'}`));
     console.log(chalk.bold.green('════════════════════════════════════\n'));
@@ -513,7 +512,7 @@ async function connectionUpdate(update) {
 
 // Manejo de errores no capturados
 process.on('uncaughtException', (err) => {
-  console.error(chalk.red('💥 [GOHAN BESTIA] Error no capturado:'), err);
+  console.error(chalk.red('🍫 [DULCE] Error no capturado:'), err);
 });
 
 let isInit = true;
@@ -615,7 +614,7 @@ watch(pluginFolder, global.reload);
 await global.reloadHandler();
 
 // Mensaje final att wilker
-console.log(chalk.bold.magenta('\n' + '⭐'.repeat(30)));
-console.log(chalk.bold.yellow('   🐉 GOHAN BESTIA - LISTO PARA PELEAR 🐉'));
-console.log(chalk.bold.cyan('   「El poder de un Saiyajin no tiene límites」'));
-console.log(chalk.bold.magenta('⭐'.repeat(30) + '\n'));
+console.log(chalk.bold.magenta('\n' + '🎉'.repeat(30)));
+console.log(chalk.bold.yellow('   🍫 DULCE - LISTO PARA COMER 🍫'));
+console.log(chalk.bold.cyan('   「El poder de un dulce no tiene límites」'));
+console.log(chalk.bold.magenta('🎉'.repeat(30) + '\n'));
